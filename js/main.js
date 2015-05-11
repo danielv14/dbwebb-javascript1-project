@@ -14,6 +14,9 @@ window.Test = (function() {
     function firstRound1() {
         // Display the question and the available answers
         var gameArea = document.getElementById("gameArea");
+
+        // temp score for reset
+        var tempScore = score;
         console.log('First round');
         console.log('poäng: ' + score);
         gameArea.innerHTML = "<h1>Rond 1. Fråga 1</h1>";
@@ -58,6 +61,8 @@ window.Test = (function() {
     // function for first round question 2
     function firstRound2() {
         console.log('poäng: ' + score);
+        // temp score for reset
+        var tempScore = score;
         
         // display the question and the alternative answers
         console.log('första ronden. Fråga två');
@@ -100,6 +105,8 @@ window.Test = (function() {
 
     // function for first round question three
     function firstRound3() {
+        // temp score for reset
+        var tempScore = score;
         
         // display the question and the alternative answers
         console.log('första ronden. Fråga tre');
@@ -144,6 +151,10 @@ window.Test = (function() {
         // Display the question and the alternatives
         console.log('second round');
         console.log('poäng: ' + score);
+
+        // temp score for reset
+        var tempScore = score;
+
         var gameArea = document.getElementById('gameArea');
         gameArea.innerHTML = '<h1>Andra ronden</h1>';
         gameArea.innerHTML += '<h2>FizzBuzz spel!</h2>';
@@ -188,8 +199,12 @@ window.Test = (function() {
     // function for info about the third round
     function aboutThirdRound() {
 
+        // temp score for reset
+        var tempScore = score;
+
         console.log('info om tredje ronden.');
         console.log('poäng: ' + score);
+        
         // display the info text 
         var gameArea = document.getElementById('gameArea');
         gameArea.innerHTML = '<h1>Rond 3</h1>';
@@ -204,8 +219,13 @@ window.Test = (function() {
     }
 
     function thirdRound() {
+        
         console.log('tredje ronden');
         console.log('poäng: ' + score);
+
+        // temp score for reset
+        var tempScore = score;
+        
         var gameArea = document.getElementById('gameArea');
         gameArea.innerHTML = '<h1 class="center">Rond 3</h1>';
         gameArea.innerHTML += '<div class="left"><ul class="list-group"><li class="list-group-item">1. Den röda cirkeln</li><li class="list-group-item">2. Den gula rektangeln</li><li class="list-group-item">3. Den gröna kvadraten</li><li class="list-group-item">4. Den gula cirkeln</li><li class="list-group-item">5. Den gröna triangeln</li><li class="list-group-item">6. Den röda kvadraten</li><li class="list-group-item">7. Den blå cirkeln</li><li class="list-group-item">8. Den gula triangeln.</li><li class="list-group-item">9. Den blå rektangeln</li><li class="list-group-item">10. Den blå triangeln</li></ul></div>'
