@@ -1,6 +1,6 @@
 body {
 	font-family: Tahoma, Serif;
-	background-color: #eee;
+	background-image: url("../img/background.png");
 
 }
 
@@ -8,7 +8,13 @@ body {
 
 div.wrapper {
 	margin: 0 auto;
+	margin-top: 10px;
 	width: 960px;
+	padding: 20px;
+	background-color: white;
+	min-height: 500px;
+	border-radius: 10px;
+	box-shadow: 4px 4px 2px -2px rgba(0,0,0,0.4);
 }
 
 div.centered {
