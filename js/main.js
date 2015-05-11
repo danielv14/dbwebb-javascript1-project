@@ -20,19 +20,25 @@ window.Test = (function() {
     var resetWhere = 0;
 
 
+    // prevent manipulation from reset
+    var preventManipulation = false;
+
+
     // click the button to start the test
     document.getElementById("startGame").addEventListener("click", firstRound1);
 
     // function to start the game
     function firstRound1() {
+       
         // Display the question and the available answers
         var gameArea = document.getElementById("gameArea");
 
         // set reset variable
         resetWhere = 1;
 
-        // temp score for reset
-        var tempScore = score;
+
+        score = 0;
+
         console.log('First round');
         console.log('poäng: ' + score);
         gameArea.innerHTML = "<h1>Rond 1. Fråga 1</h1>";
@@ -45,6 +51,7 @@ window.Test = (function() {
         document.getElementById('2001').addEventListener('click', function() {
             // Add 3 points to score
             score += 3;
+            preventManipulation = true;
             console.log("poäng: " + score);
             gameArea.innerHTML += '<h3> Korrekt!';
             gameArea.innerHTML += '<button type="button" id="moveOn" class="btn btn-default">Nästa fråga</button>';
@@ -77,8 +84,8 @@ window.Test = (function() {
     // function for first round question 2
     function firstRound2() {
         console.log('poäng: ' + score);
-        // temp score for reset
-        var tempScore = score;
+        
+
 
         // set reset variable
         resetWhere = 2;
@@ -105,6 +112,7 @@ window.Test = (function() {
         document.getElementById('1958').addEventListener('click', function() { 
             // Add 3 points to score
             score += 3;
+            preventManipulation = true;
             console.log('poäng: ' + score);
             gameArea.innerHTML += '<h3> Rätt!';
             gameArea.innerHTML += '<button type="button" id="moveOn" class="btn btn-default">Nästa fråga</button>';
@@ -160,6 +168,7 @@ window.Test = (function() {
         document.getElementById('1980').addEventListener('click', function() { 
             // Add 3 points to score
             score += 3;
+            preventManipulation = true;
             console.log('poäng: ' + score);
             gameArea.innerHTML += '<h3> Rätt!';
             gameArea.innerHTML += '<button type="button" id="moveOn" class="btn btn-default">Nästa fråga</button>';
@@ -168,7 +177,7 @@ window.Test = (function() {
             });
             }, false);
     }
-
+    // Function for the second part of the test
     function secondRound() {
         // Display the question and the alternatives
         console.log('second round');
@@ -204,6 +213,7 @@ window.Test = (function() {
         document.getElementById('buzz').addEventListener('click', function() { 
             // Add 3 points to score
             score += 3;
+            preventManipulation = true;
             console.log('poäng: ' + score);
             gameArea.innerHTML += '<h3> Rätt!';
             gameArea.innerHTML += '<button type="button" id="moveOn" class="btn btn-default">Nästa fråga</button>';
@@ -246,16 +256,13 @@ window.Test = (function() {
         document.getElementById("moveOn").addEventListener("click", thirdRound);
 
     }
-
+    // Function for the third round of the test
     function thirdRound() {
-
-
-        
+ 
         console.log('tredje ronden');
         console.log('poäng: ' + score);
 
-        // temp score for reset
-        var tempScore = score;
+
 
         // Reset variable 
         resetWhere = 5;
@@ -274,6 +281,7 @@ window.Test = (function() {
             if (clickSequence == 0) {
                 clickSequence += 1;
                 internalScore += 1;
+                preventManipulation = true;
                 console.log('Du klickade i rätt ordning');
             } else {
                 console.log('Du klickade i fel ordning...');
@@ -395,7 +403,7 @@ window.Test = (function() {
 
     }
 
-
+    // Function for when ten seconds have passed or you finished test 3 or if you misclicked in test 3
     function tenSeconds() {
 
         var gameArea = document.getElementById('gameArea');
@@ -415,6 +423,7 @@ window.Test = (function() {
         document.getElementById("moveOn").addEventListener("click", endScreen);
     }
 
+    // Function for the "end screen".
     function endScreen() {
         // set variable for final score
         var finalScore = score + internalScore;
@@ -432,26 +441,60 @@ window.Test = (function() {
 
     }
 
+
     var test = {
 
+    // Reset possibilities depending on where you are in the test. Type "Test.reset()" in consol to reset the active test.
     'reset': function() {
+            // Test 1 part 2
             if (resetWhere == 1) {
-                console.log('Reseting test1 part 1');
-                firstRound1();
+                if (preventManipulation == false) {
+                    console.log('Reseting test1 part 1');               
+                    firstRound1();
+                } else {
+                    console.log('reseting test1 part 2. fixing score.');
+                    score -= 3;
+                    firstRound1();
+                }
+            // Test 1 part 2
             } else if (resetWhere == 2) {
-                console.log('Reseting test1 part 2');
-                firstRound2();
+                if (preventManipulation == false) {
+                    console.log('Reseting test1 part 2');
+                    firstRound2();
+                } else {
+                    console.log('Reseting test1 part 2. fixing score');
+                    score -=3;
+                    firstRound2();
+                }
+            // Test 1 part 3
             } else if (resetWhere == 3) {
-                console.log('Reseting test1 part 3');
-                firstRound3();
+                if (preventManipulation == false) {
+                    console.log('Reseting test1 part 3');
+                    firstRound3();
+                } else {
+                    console.log('Reseting test1 part 3. fixing score.');
+                    score -=3;
+                    firstRound3();
+                }
+            // Test 2
             } else if (resetWhere == 4) {
-                console.log('Reseting test 2');
-                secondRound();
+                if (preventManipulation == false) {
+                    console.log('Reseting test 2');
+                    secondRound();                    
+                } else {
+                    console.log('Reseting test 2. fixing score');
+                    score -= 3;
+                    secondRound();
+                }
+
+            // Test 3
             } else if (resetWhere == 5) {
                 console.log('Reseting test 3');
-                thirdRound();
+                internalScore = 0;
+                clickSequence = 0;
+                aboutThirdRound();
             }
-
+            // Default
             else {
                 console.log('nothing to reset now');
             }
