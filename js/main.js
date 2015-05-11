@@ -6,12 +6,19 @@ window.Test = (function() {
 
     // Set variable for score
     var score = 0;
+    
     // Set variable for internal score for the third test
     var internalScore = 0;
+    
     // Set variable for sequence for the third test
     var clickSequence = 0;
+    
     // set error variable for the third test to generat fail text
     var clickFail = false;
+
+    // Set variable telling what to reset
+    var resetWhere = 0;
+
 
     // click the button to start the test
     document.getElementById("startGame").addEventListener("click", firstRound1);
@@ -20,6 +27,9 @@ window.Test = (function() {
     function firstRound1() {
         // Display the question and the available answers
         var gameArea = document.getElementById("gameArea");
+
+        // set reset variable
+        resetWhere = 1;
 
         // temp score for reset
         var tempScore = score;
@@ -69,6 +79,9 @@ window.Test = (function() {
         console.log('poäng: ' + score);
         // temp score for reset
         var tempScore = score;
+
+        // set reset variable
+        resetWhere = 2;
         
         // display the question and the alternative answers
         console.log('första ronden. Fråga två');
@@ -113,6 +126,9 @@ window.Test = (function() {
     function firstRound3() {
         // temp score for reset
         var tempScore = score;
+        
+        // set reset variable
+        resetWhere = 3;
         
         // display the question and the alternative answers
         console.log('första ronden. Fråga tre');
@@ -160,6 +176,9 @@ window.Test = (function() {
 
         // temp score for reset
         var tempScore = score;
+
+        // set reset variable
+        resetWhere = 4;
 
         var gameArea = document.getElementById('gameArea');
         gameArea.innerHTML = '<h1>Andra ronden</h1>';
@@ -238,13 +257,17 @@ window.Test = (function() {
         // temp score for reset
         var tempScore = score;
 
+        // Reset variable 
+        resetWhere = 5;
+
         var gameArea = document.getElementById('gameArea');
         gameArea.innerHTML = '<h1 class="center">Rond 3</h1>';
         gameArea.innerHTML += '<div class="left"><ul class="list-group"><li class="list-group-item">1. Den röda cirkeln</li><li class="list-group-item">2. Den gula rektangeln</li><li class="list-group-item">3. Den gröna kvadraten</li><li class="list-group-item">4. Den gula cirkeln</li><li class="list-group-item">5. Den gröna triangeln</li><li class="list-group-item">6. Den röda kvadraten</li><li class="list-group-item">7. Den blå cirkeln</li><li class="list-group-item">8. Den gula triangeln.</li><li class="list-group-item">9. Den blå rektangeln</li><li class="list-group-item">10. Den blå triangeln</li></ul></div>'
         gameArea.innerHTML += '<div class="right"><div id="9" class="rektangel blue"></div><div id="4"class="cirkel yellow"></div><div id="1" class="cirkel red"></div><div id="3" class="kvadrat green"></div><div id="6" class="kvadrat red"></div></div>';
         gameArea.innerHTML += '<div class="right"><div id="2" class="rektangel yellow"></div><div id="5" class="triangel-green"></div><div id="10" class="triangel-blue"></div><div id="7" class="cirkel blue"></div><div id="8" class="triangel-yellow"></div></div>';
 
-
+        // Timer
+        setTimeout(tenSeconds, 10000);
 
         // Click the objects in sequence
         document.getElementById('1').addEventListener('click', function() {
@@ -368,17 +391,14 @@ window.Test = (function() {
             }
         });
 
-        // Timer
-        setTimeout(tenSeconds, 10000);
  
 
     }
 
 
     function tenSeconds() {
-        console.log('10 sekunder har gått');
+
         var gameArea = document.getElementById('gameArea');
-        console.log('internalScore: ' + internalScore);
         if (internalScore == 10) {
             gameArea.innerHTML = '<h1>Grattis! Du fick alla rätt!</h1>';
         } else if (clickFail == true) {
@@ -411,6 +431,33 @@ window.Test = (function() {
         })
 
     }
+
+    var test = {
+
+    'reset': function() {
+            if (resetWhere == 1) {
+                console.log('Reseting test1 part 1');
+                firstRound1();
+            } else if (resetWhere == 2) {
+                console.log('Reseting test1 part 2');
+                firstRound2();
+            } else if (resetWhere == 3) {
+                console.log('Reseting test1 part 3');
+                firstRound3();
+            } else if (resetWhere == 4) {
+                console.log('Reseting test 2');
+                secondRound();
+            } else if (resetWhere == 5) {
+                console.log('Reseting test 3');
+                thirdRound();
+            }
+
+            else {
+                console.log('nothing to reset now');
+            }
+        }
+    }
+    return test;
 
 
 
