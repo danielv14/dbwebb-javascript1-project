@@ -19,6 +19,9 @@ window.Test = (function() {
     // Set variable telling what to reset
     var resetWhere = 0;
 
+    // Set timer variable
+    var timer;
+
 
     // prevent manipulation from reset
     var preventManipulation = false;
@@ -132,8 +135,7 @@ window.Test = (function() {
 
     // function for first round question three
     function firstRound3() {
-        // temp score for reset
-        var tempScore = score;
+
         
         // set reset variable
         resetWhere = 3;
@@ -182,9 +184,6 @@ window.Test = (function() {
         // Display the question and the alternatives
         console.log('second round');
         console.log('poäng: ' + score);
-
-        // temp score for reset
-        var tempScore = score;
 
         // set reset variable
         resetWhere = 4;
@@ -238,8 +237,7 @@ window.Test = (function() {
     function aboutThirdRound() {
 
 
-        // temp score for reset
-        var tempScore = score;
+
 
         console.log('info om tredje ronden.');
         console.log('poäng: ' + score);
@@ -262,23 +260,22 @@ window.Test = (function() {
         console.log('tredje ronden');
         console.log('poäng: ' + score);
 
-
-
         // Reset variable 
         resetWhere = 5;
 
+        // Timer
+        timer = window.setTimeout(function(){ tenSeconds(); }, 10000);
+
         var gameArea = document.getElementById('gameArea');
         gameArea.innerHTML = '<h1 class="center">Rond 3</h1>';
-        gameArea.innerHTML += '<div class="left"><ul class="list-group"><li class="list-group-item">1. Den röda cirkeln</li><li class="list-group-item">2. Den gula rektangeln</li><li class="list-group-item">3. Den gröna kvadraten</li><li class="list-group-item">4. Den gula cirkeln</li><li class="list-group-item">5. Den gröna triangeln</li><li class="list-group-item">6. Den röda kvadraten</li><li class="list-group-item">7. Den blå cirkeln</li><li class="list-group-item">8. Den gula triangeln.</li><li class="list-group-item">9. Den blå rektangeln</li><li class="list-group-item">10. Den blå triangeln</li></ul></div>'
+        gameArea.innerHTML += '<div class="left"><ul class="list-group"><li class="list-group-item">1. Den röda cirkeln</li><li class="list-group-item">2. Den gula rektangeln</li><li class="list-group-item">3. Den gröna kvadraten</li><li class="list-group-item">4. Den gula cirkeln</li><li class="list-group-item">5. Den gröna triangeln</li><li class="list-group-item">6. Den röda kvadraten</li><li class="list-group-item">7. Den blå cirkeln</li><li class="list-group-item">8. Den gula triangeln.</li><li class="list-group-item">9. Den blå rektangeln</li><li class="list-group-item">10. Den blå triangeln</li></ul></div>';
         gameArea.innerHTML += '<div class="right"><div id="9" class="rektangel blue"></div><div id="4"class="cirkel yellow"></div><div id="1" class="cirkel red"></div><div id="3" class="kvadrat green"></div><div id="6" class="kvadrat red"></div></div>';
         gameArea.innerHTML += '<div class="right"><div id="2" class="rektangel yellow"></div><div id="5" class="triangel-green"></div><div id="10" class="triangel-blue"></div><div id="7" class="cirkel blue"></div><div id="8" class="triangel-yellow"></div></div>';
 
-        // Timer
-        setTimeout(tenSeconds, 10000);
 
         // Click the objects in sequence
         document.getElementById('1').addEventListener('click', function() {
-            if (clickSequence == 0) {
+            if (clickSequence === 0) {
                 clickSequence += 1;
                 internalScore += 1;
                 preventManipulation = true;
@@ -406,17 +403,20 @@ window.Test = (function() {
     // Function for when ten seconds have passed or you finished test 3 or if you misclicked in test 3
     function tenSeconds() {
 
+        // Cancel the timer
+        window.clearTimeout(timer);
+
         var gameArea = document.getElementById('gameArea');
-        if (internalScore == 10) {
+        if (internalScore === 10) {
             gameArea.innerHTML = '<h1>Grattis! Du fick alla rätt!</h1>';
-        } else if (clickFail == true) {
+        } else if (clickFail === true) {
             gameArea.innerHTML = '<h1>Du klickade i fel ordning :(</h1>';
         } else {
             gameArea.innerHTML = '<h1>Tiden har gått ut!</h1>';
         }
 
         gameArea.innerHTML += '<h2>Du fick ' + internalScore + ' av 10 rätt</h2>';
-        gameArea.innerHTML += '<p>intelligenstestet är nu slut.</p>'
+        gameArea.innerHTML += '<p>intelligenstestet är nu slut.</p>';
         gameArea.innerHTML += '<button type="button" id="moveOn" class="btn btn-default">Se resultat</button>';
 
         // Click button to see end-screen
@@ -431,13 +431,13 @@ window.Test = (function() {
         var gameArea = document.getElementById('gameArea');
         gameArea.innerHTML = '<h1>Resultat</h1>';
         gameArea.innerHTML += '<p>Du fick totalt ' + finalScore + ' poäng av 25 möjliga</p>';
-        gameArea.innerHTML += '<h3>Hur pass bra resultat fick du?</h3>'
+        gameArea.innerHTML += '<h3>Hur pass bra resultat fick du?</h3>';
         gameArea.innerHTML += '<ul class="list-group"><li class="list-group-item">Under 8 poäng: Njaaaa....</li><li class="list-group-item">8 - 16 poäng: Nu börjar det likna något.</li><li class="list-group-item">16 - 22 poäng: Sådär ja!</li><li class="list-group-item">22 - 25 poäng: Heter du Einstein i efternamn?</li></ul>';
         gameArea.innerHTML += '<button type="button" id="moveOn" class="btn btn-default">Prova igen</button>';
 
         document.getElementById('moveOn').addEventListener('click', function() {
-            location.reload();
-        })
+            window.location.reload();
+        });
 
     }
 
@@ -447,8 +447,8 @@ window.Test = (function() {
     // Reset possibilities depending on where you are in the test. Type "Test.reset()" in consol to reset the active test.
     'reset': function() {
             // Test 1 part 2
-            if (resetWhere == 1) {
-                if (preventManipulation == false) {
+            if (resetWhere === 1) {
+                if (preventManipulation === false) {
                     console.log('Reseting test1 part 1');               
                     firstRound1();
                 } else {
@@ -457,8 +457,8 @@ window.Test = (function() {
                     firstRound1();
                 }
             // Test 1 part 2
-            } else if (resetWhere == 2) {
-                if (preventManipulation == false) {
+            } else if (resetWhere === 2) {
+                if (preventManipulation === false) {
                     console.log('Reseting test1 part 2');
                     firstRound2();
                 } else {
@@ -467,8 +467,8 @@ window.Test = (function() {
                     firstRound2();
                 }
             // Test 1 part 3
-            } else if (resetWhere == 3) {
-                if (preventManipulation == false) {
+            } else if (resetWhere === 3) {
+                if (preventManipulation === false) {
                     console.log('Reseting test1 part 3');
                     firstRound3();
                 } else {
@@ -477,8 +477,8 @@ window.Test = (function() {
                     firstRound3();
                 }
             // Test 2
-            } else if (resetWhere == 4) {
-                if (preventManipulation == false) {
+            } else if (resetWhere === 4) {
+                if (preventManipulation ===false) {
                     console.log('Reseting test 2');
                     secondRound();                    
                 } else {
@@ -488,7 +488,7 @@ window.Test = (function() {
                 }
 
             // Test 3
-            } else if (resetWhere == 5) {
+            } else if (resetWhere === 5) {
                 console.log('Reseting test 3');
                 internalScore = 0;
                 clickSequence = 0;
@@ -499,7 +499,7 @@ window.Test = (function() {
                 console.log('nothing to reset now');
             }
         }
-    }
+    };
     return test;
 
 
