@@ -173,10 +173,9 @@ window.Test = (function() {
         // display the info text 
         var gameArea = document.getElementById('gameArea');
         gameArea.innerHTML = '<h1>Rond 3</h1>';
-        gameArea.innerHTML += '<h2>Testa din minnesförmåga</h2>';
-        gameArea.innerHTML += '<p>Detta moment går ut på att testa din minnesförmåga. Du kommer att se 9 stycken flaggor under x antal sekunder.</p>';
-        gameArea.innerHTML += '<p>Därefter kommer flaggorna att täckas över och du komemr att få se en lista med länder.</p>';
-        gameArea.innerHTML += '<p>Klicka på de övertäckta rutorna i den ordning som listan visar.</p>';
+        gameArea.innerHTML += '<h2>Testa din visuella förmåga och läsförståelse</h2>';
+        gameArea.innerHTML += '<p>Detta test går ut på att du under tidspress ska klicka på de objekt du ser i nummerordning enligt en lista</p>';
+        gameArea.innerHTML += '<p>Klicka på objekten i rätt nummerordning så snabbt du kan..</p>';
         gameArea.innerHTML += '<button type="button" id="moveOn" class="btn btn-default">Starta</button>';
 
         // clickable button to take you to the actual round
@@ -188,6 +187,34 @@ window.Test = (function() {
         console.log('tredje ronden');
         var gameArea = document.getElementById('gameArea');
         gameArea.innerHTML = '<h1 class="center">Rond 3</h1>';
+        gameArea.innerHTML += '<div class="left"><ul class="list-group"><li class="list-group-item">1. Den röda cirkeln</li><li class="list-group-item">2. Den gula rektangeln</li><li class="list-group-item">3. Den gröna kvadraten</li><li class="list-group-item">4. Den gula cirkeln</li><li class="list-group-item">5. Den gröna triangeln</li><li class="list-group-item">6. Den röda kvadraten</li><li class="list-group-item">7. Den blå cirkeln</li><li class="list-group-item">8. Den gula triangeln.</li><li class="list-group-item">9. Den blå rektangeln</li><li class="list-group-item">10. Den blå triangeln</li></ul></div>'
+        gameArea.innerHTML += '<div class="right"><div id="9" class="rektangel blue"></div><div id="4"class="cirkel yellow"></div><div id="1" class="cirkel red"></div><div id="3" class="kvadrat green"></div><div id="6" class="kvadrat red"></div></div>';
+        gameArea.innerHTML += '<div class="right"><div id="2" class="rektangel yellow"></div><div id="5" class="triangel-green"></div><div id="10" class="triangel-blue"></div><div id="7" class="cirkel blue"></div><div id="8" class="triangel-yellow"></div></div>';
+
+
+        // Timer
+        setTimeout(tenSeconds, 10000);
+ 
+
+    }
+
+    function tenSeconds() {
+        console.log('10 sekunder har gått');
+        var gameArea = document.getElementById('gameArea');
+        gameArea.innerHTML = '<h1>Tiden är slut!</h1>';
+        gameArea.innerHTML += '<h2>Du fick X av Y rätt</h2>';
+        gameArea.innerHTML += '<p>intelligenstestet är nu slut.</p>'
+        gameArea.innerHTML += '<button type="button" id="moveOn" class="btn btn-default">Se resultat</button>';
+
+        // Click button to see end-screen
+        document.getElementById("moveOn").addEventListener("click", endScreen);
+    }
+
+    function endScreen() {
+        console.log('spelet är slut');
+        var gameArea = document.getElementById('gameArea');
+        gameArea.innerHTML = '<h1>Resultat</h1>';
+        gameArea.innerHTML = '<p>Du fick totalt X poäng av Y möjliga</p>';
     }
 
 
