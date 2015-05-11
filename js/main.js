@@ -6,6 +6,12 @@ window.Test = (function() {
 
     // Set variable for score
     var score = 0;
+    // Set variable for internal score for the third test
+    var internalScore = 0;
+    // Set variable for sequence for the third test
+    var clickSequence = 0;
+    // set error variable for the third test to generat fail text
+    var clickFail = false;
 
     // click the button to start the test
     document.getElementById("startGame").addEventListener("click", firstRound1);
@@ -169,8 +175,9 @@ window.Test = (function() {
             console.log('poäng: ' + score);
             gameArea.innerHTML += '<h3> Fel! Rätt svar var Buzz';
             gameArea.innerHTML += '<button type="button" id="moveOn" class="btn btn-default">Nästa fråga</button>';
+            
             document.getElementById('moveOn').addEventListener('click', function() {
-            aboutThirdRound();
+                aboutThirdRound();
             });
 
             }, false);        
@@ -181,8 +188,9 @@ window.Test = (function() {
             console.log('poäng: ' + score);
             gameArea.innerHTML += '<h3> Rätt!';
             gameArea.innerHTML += '<button type="button" id="moveOn" class="btn btn-default">Nästa fråga</button>';
+            
             document.getElementById('moveOn').addEventListener('click', function() {
-            aboutThirdRound();
+                aboutThirdRound();
             });
             }, false);        
 
@@ -190,14 +198,16 @@ window.Test = (function() {
             console.log('poäng: ' + score);
             gameArea.innerHTML += '<h3> Fel! Rätt svar var Buzz';
             gameArea.innerHTML += '<button type="button" id="moveOn" class="btn btn-default">Nästa fråga</button>';
+            
             document.getElementById('moveOn').addEventListener('click', function() {
-            aboutThirdRound();
+                aboutThirdRound();
             });
             }, false);
     }
 
     // function for info about the third round
     function aboutThirdRound() {
+
 
         // temp score for reset
         var tempScore = score;
@@ -219,13 +229,15 @@ window.Test = (function() {
     }
 
     function thirdRound() {
+
+
         
         console.log('tredje ronden');
         console.log('poäng: ' + score);
 
         // temp score for reset
         var tempScore = score;
-        
+
         var gameArea = document.getElementById('gameArea');
         gameArea.innerHTML = '<h1 class="center">Rond 3</h1>';
         gameArea.innerHTML += '<div class="left"><ul class="list-group"><li class="list-group-item">1. Den röda cirkeln</li><li class="list-group-item">2. Den gula rektangeln</li><li class="list-group-item">3. Den gröna kvadraten</li><li class="list-group-item">4. Den gula cirkeln</li><li class="list-group-item">5. Den gröna triangeln</li><li class="list-group-item">6. Den röda kvadraten</li><li class="list-group-item">7. Den blå cirkeln</li><li class="list-group-item">8. Den gula triangeln.</li><li class="list-group-item">9. Den blå rektangeln</li><li class="list-group-item">10. Den blå triangeln</li></ul></div>'
@@ -233,17 +245,149 @@ window.Test = (function() {
         gameArea.innerHTML += '<div class="right"><div id="2" class="rektangel yellow"></div><div id="5" class="triangel-green"></div><div id="10" class="triangel-blue"></div><div id="7" class="cirkel blue"></div><div id="8" class="triangel-yellow"></div></div>';
 
 
+
+        // Click the objects in sequence
+        document.getElementById('1').addEventListener('click', function() {
+            if (clickSequence == 0) {
+                clickSequence += 1;
+                internalScore += 1;
+                console.log('Du klickade i rätt ordning');
+            } else {
+                console.log('Du klickade i fel ordning...');
+                clickFail = true;
+                tenSeconds();
+            }
+        });
+
+        document.getElementById('2').addEventListener('click', function() {
+            if (clickSequence == 1) {
+                clickSequence += 1;
+                internalScore += 1;
+                console.log('Du klickade i rätt ordning');
+            } else {
+                console.log('Du klickade i fel ordning...');
+                clickFail = true;
+                tenSeconds();
+            }
+        });
+
+        document.getElementById('3').addEventListener('click', function() {
+            if (clickSequence == 2) {
+                clickSequence += 1;
+                internalScore += 1;
+                console.log('Du klickade i rätt ordning');
+            } else {
+                console.log('Du klickade i fel ordning');
+                clickFail = true;
+                tenSeconds();
+            }
+        });
+
+        document.getElementById('4').addEventListener('click', function() {
+            if (clickSequence == 3) {
+                clickSequence += 1;
+                internalScore += 1;
+                console.log('Du klickade i rätt ordning');
+            } else {
+                console.log('Du klickade i fel ordning');
+                clickFail = true;
+                tenSeconds();
+            }
+        });
+
+        document.getElementById('5').addEventListener('click', function() {
+            if (clickSequence == 4) {
+                clickSequence += 1;
+                internalScore += 1;
+                console.log('Du klickade i rätt ordning');
+            } else {
+                console.log('Du klickade i fel ordning');
+                clickFail = true;
+                tenSeconds();
+            }
+        });
+
+        document.getElementById('6').addEventListener('click', function() {
+            if (clickSequence == 5) {
+                clickSequence += 1;
+                internalScore += 1;
+                console.log('Du klickade i rätt ordning');
+            } else {
+                console.log('Du klickade i fel ordning');
+                clickFail = true;
+                tenSeconds();
+            }
+        });
+
+        document.getElementById('7').addEventListener('click', function() {
+            if (clickSequence == 6) {
+                clickSequence += 1;
+                internalScore += 1;
+                console.log('Du klickade i rätt ordning');
+            } else {
+                console.log('Du klickade i fel ordning');
+                clickFail = true;
+                tenSeconds();
+            }
+        });
+
+        document.getElementById('8').addEventListener('click', function() {
+            if (clickSequence == 7) {
+                clickSequence += 1;
+                internalScore += 1;
+                console.log('Du klickade i rätt ordning');
+            } else {
+                console.log('Du klickade i fel ordning');
+                clickFail = true;
+                tenSeconds();
+            }
+        });
+
+        document.getElementById('9').addEventListener('click', function() {
+            if (clickSequence == 8) {
+                clickSequence += 1;
+                internalScore += 1;
+                console.log('Du klickade i rätt ordning');
+            } else {
+                console.log('Du klickade i fel ordning');
+                clickFail = true;
+                tenSeconds();
+            }
+        });
+
+        document.getElementById('10').addEventListener('click', function() {
+            if (clickSequence == 9) {
+                clickSequence += 1;
+                internalScore += 1;
+                console.log('Du klickade i rätt ordning');
+                tenSeconds();
+            } else {
+                console.log('Du klickade i fel ordning');
+                clickFail = true;
+                tenSeconds();
+            }
+        });
+
         // Timer
-        setTimeout(tenSeconds, 5000);
+        setTimeout(tenSeconds, 10000);
  
 
     }
 
+
     function tenSeconds() {
         console.log('10 sekunder har gått');
         var gameArea = document.getElementById('gameArea');
-        gameArea.innerHTML = '<h1>Tiden är slut!</h1>';
-        gameArea.innerHTML += '<h2>Du fick X av Y rätt</h2>';
+        console.log('internalScore: ' + internalScore);
+        if (internalScore == 10) {
+            gameArea.innerHTML = '<h1>Grattis! Du fick alla rätt!</h1>';
+        } else if (clickFail == true) {
+            gameArea.innerHTML = '<h1>Du klickade i fel ordning :(</h1>';
+        } else {
+            gameArea.innerHTML = '<h1>Tiden har gått ut!</h1>';
+        }
+
+        gameArea.innerHTML += '<h2>Du fick ' + internalScore + ' av 10 rätt</h2>';
         gameArea.innerHTML += '<p>intelligenstestet är nu slut.</p>'
         gameArea.innerHTML += '<button type="button" id="moveOn" class="btn btn-default">Se resultat</button>';
 
@@ -252,13 +396,23 @@ window.Test = (function() {
     }
 
     function endScreen() {
+        // set variable for final score
+        var finalScore = score + internalScore;
         console.log('spelet är slut');
         var gameArea = document.getElementById('gameArea');
         gameArea.innerHTML = '<h1>Resultat</h1>';
-        gameArea.innerHTML += '<p>Du fick totalt ' + score + ' poäng av 15 möjliga</p>';
+        gameArea.innerHTML += '<p>Du fick totalt ' + finalScore + ' poäng av 25 möjliga</p>';
         gameArea.innerHTML += '<h3>Hur pass bra resultat fick du?</h3>'
-        gameArea.innerHTML += '<ul class="list-group"><li class="list-group-item">Under 5 poäng: Njaaaa....</li><li class="list-group-item">5 - 10 poäng: Nu börjar det likna något.</li><li class="list-group-item">10 - 15 poäng: Sådär ja!</li></ul>'
+        gameArea.innerHTML += '<ul class="list-group"><li class="list-group-item">Under 8 poäng: Njaaaa....</li><li class="list-group-item">8 - 16 poäng: Nu börjar det likna något.</li><li class="list-group-item">16 - 22 poäng: Sådär ja!</li><li class="list-group-item">22 - 25 poäng: Heter du Einstein i efternamn?</li></ul>';
+        gameArea.innerHTML += '<button type="button" id="moveOn" class="btn btn-default">Prova igen</button>';
+
+        document.getElementById('moveOn').addEventListener('click', function() {
+            location.reload();
+        })
+
     }
+
+
 
 
 
