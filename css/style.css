@@ -1,0 +1,23 @@
+body {
+	font-family: Tahoma, Serif;
+	background-color: #eee;
+
+}
+
+
+
+div.wrapper {
+	margin: 0 auto;
+	width: 960px;
+}
+
+div.centered {
+	text-align: center;
+
+}
+
+.center {
+	text-align: center;
+}
+
+
