@@ -39,16 +39,27 @@ window.Test = (function() {
         // set reset variable
         resetWhere = 1;
 
+        // Set question object
+        var question = {
+            theRond: '<h1>Rond 1. Fråga 1.</h1>',
+            theQuestion:'<h2>Vilket år kom Peter Jacksons första film i Sagan om Ringen trilogin?</h2>', 
+            answerOne:'<button type="button" id="2001" class="btn btn-default">2001</button>',
+            answerTwo:'<button type="button" id="2002"class="btn btn-default">2002</button>',
+            answerThree:'<button type="button" id="2003" class="btn btn-default">2003</button>',
+            buttonNext: '<button type="button" id="moveOn" class="btn btn-default">Nästa fråga</button>',
+            correct: '<h3>Korrekt!</h3>',
+            wrong: '<h3>Fel! Rätt svar är: 2001</h3>'
+        };
 
         score = 0;
 
         console.log('First round');
         console.log('poäng: ' + score);
-        gameArea.innerHTML = "<h1>Rond 1. Fråga 1</h1>";
-        gameArea.innerHTML += "<h2>Vilket år kom Peter Jacksons första film i Sagan om Ringen trilogin?</h2>";
-        gameArea.innerHTML += '<button type="button" id="2001" class="btn btn-default">2001</button>';
-        gameArea.innerHTML += '<button type="button" id="2002"class="btn btn-default">2002</button>';
-        gameArea.innerHTML += '<button type="button" id="2003" class="btn btn-default">2003</button>';
+        gameArea.innerHTML = question.theRond;
+        gameArea.innerHTML += question.theQuestion;
+        gameArea.innerHTML += question.answerOne;
+        gameArea.innerHTML += question.answerTwo;
+        gameArea.innerHTML += question.answerThree;
 
         // Click on the diffrent alternative buttons
         document.getElementById('2001').addEventListener('click', function() {
@@ -56,8 +67,8 @@ window.Test = (function() {
             score += 3;
             preventManipulation = true;
             console.log("poäng: " + score);
-            gameArea.innerHTML += '<h3> Korrekt!';
-            gameArea.innerHTML += '<button type="button" id="moveOn" class="btn btn-default">Nästa fråga</button>';
+            gameArea.innerHTML += question.correct;
+            gameArea.innerHTML += question.buttonNext;
             document.getElementById('moveOn').addEventListener('click', function() {
             firstRound2();
             });
@@ -66,8 +77,8 @@ window.Test = (function() {
 
         document.getElementById('2002').addEventListener('click', function() { 
             console.log('poäng: ' + score);
-            gameArea.innerHTML += '<h3> Fel! Rätt svar var 2001';
-            gameArea.innerHTML += '<button type="button" id="moveOn" class="btn btn-default">Nästa fråga</button>';
+            gameArea.innerHTML += question.wrong;
+            gameArea.innerHTML += question.buttonNext;
             document.getElementById('moveOn').addEventListener('click', function() {
             firstRound2();
             });
@@ -75,8 +86,8 @@ window.Test = (function() {
 
         document.getElementById('2003').addEventListener('click', function() { 
             console.log('poäng: ' + score);
-            gameArea.innerHTML += '<h3> Fel! Rätt svar var 2001';
-            gameArea.innerHTML += '<button type="button" id="moveOn" class="btn btn-default">Nästa fråga</button>';
+            gameArea.innerHTML += question.wrong;
+            gameArea.innerHTML += question.buttonNext;
             document.getElementById('moveOn').addEventListener('click', function() {
             firstRound2();
             });
@@ -88,24 +99,34 @@ window.Test = (function() {
     function firstRound2() {
         console.log('poäng: ' + score);
         
-
-
         // set reset variable
         resetWhere = 2;
-        
+
+
+        // The question object
+        var question = {
+            theRond: '<h1>Rond 1. Fråga 2.</h1>',
+            theQuestion: '<h2>Vilket år föddes artisten Madonna?</h2>',
+            answerOne: '<button type="button" id="1959" class="btn btn-default">1959</button>',
+            answerTwo: '<button type="button" id="1958"class="btn btn-default">1958</button>',
+            answerThree: '<button type="button" id="1955" class="btn btn-default">1955</button>',
+            buttonNext: '<button type="button" id="moveOn" class="btn btn-default">Nästa fråga</button>',
+            correct: '<h3>Korrekt!</h3>',
+            wrong: '<h3>Fel! Rätt svar är: 1958</h3>'
+        };        
         // display the question and the alternative answers
         console.log('första ronden. Fråga två');
         var gameArea = document.getElementById("gameArea");
-        gameArea.innerHTML = "<h1>Rond 1. Fråga 2.</h1>";
-        gameArea.innerHTML += "<h2>Vilket år föddes artisten Madonna?</h2>";
-        gameArea.innerHTML += '<button type="button" id="1959" class="btn btn-default">1959</button>';
-        gameArea.innerHTML += '<button type="button" id="1958"class="btn btn-default">1958</button>';
-        gameArea.innerHTML += '<button type="button" id="1955" class="btn btn-default">1955</button>';
+        gameArea.innerHTML = question.theRond;
+        gameArea.innerHTML += question.theQuestion;
+        gameArea.innerHTML += question.answerOne;
+        gameArea.innerHTML += question.answerTwo;
+        gameArea.innerHTML += question.answerThree;
 
         // Click on the diffrent alternative buttons
         document.getElementById('1959').addEventListener('click', function() {
-            gameArea.innerHTML += '<h3> Fel! Rätt svar var 1958';
-            gameArea.innerHTML += '<button type="button" id="moveOn" class="btn btn-default">Nästa fråga</button>';
+            gameArea.innerHTML += question.wrong;
+            gameArea.innerHTML += question.buttonNext;
             document.getElementById('moveOn').addEventListener('click', function() {
             firstRound3();
             });
@@ -117,16 +138,16 @@ window.Test = (function() {
             score += 3;
             preventManipulation = true;
             console.log('poäng: ' + score);
-            gameArea.innerHTML += '<h3> Rätt!';
-            gameArea.innerHTML += '<button type="button" id="moveOn" class="btn btn-default">Nästa fråga</button>';
+            gameArea.innerHTML += question.correct;
+            gameArea.innerHTML += question.buttonNext;
             document.getElementById('moveOn').addEventListener('click', function() {
             firstRound3();
             });
             }, false);        
 
         document.getElementById('1955').addEventListener('click', function() { 
-            gameArea.innerHTML += '<h3> Fel! Rätt svar var 1958';
-            gameArea.innerHTML += '<button type="button" id="moveOn" class="btn btn-default">Nästa fråga</button>';
+            gameArea.innerHTML += question.wrong;
+            gameArea.innerHTML += question.buttonNext;
             document.getElementById('moveOn').addEventListener('click', function() {
             firstRound3();
             });
@@ -139,20 +160,32 @@ window.Test = (function() {
         
         // set reset variable
         resetWhere = 3;
+
+        // Set question object
+        var question = {
+            theRond: '<h1>Rond 1. Fråga 3.</h1>',
+            theQuestion: '<h2>Vilket år dog regissören Alfred Hitchkock?</h2>',
+            answerOne: '<button type="button" id="1978" class="btn btn-default">1978</button>',
+            answerTwo: '<button type="button" id="1979"class="btn btn-default">1979</button>',
+            answerThree: '<button type="button" id="1980" class="btn btn-default">1980</button>',
+            buttonNext: '<button type="button" id="moveOn" class="btn btn-default">Nästa fråga</button>',
+            correct: '<h3>Korrekt!</h3>',
+            wrong: '<h3>Fel! Rätt svar är: 1980</h3>'
+        };
         
         // display the question and the alternative answers
         console.log('första ronden. Fråga tre');
         var gameArea = document.getElementById("gameArea");
-        gameArea.innerHTML = "<h1>Rond 1. Fråga 3.</h1>";
-        gameArea.innerHTML += "<h2>Vilket år dog regissören Alfred Hitchkock?</h2>";
-        gameArea.innerHTML += '<button type="button" id="1978" class="btn btn-default">1978</button>';
-        gameArea.innerHTML += '<button type="button" id="1979"class="btn btn-default">1979</button>';
-        gameArea.innerHTML += '<button type="button" id="1980" class="btn btn-default">1980</button>';
+        gameArea.innerHTML = question.theRond;
+        gameArea.innerHTML += question.theQuestion;
+        gameArea.innerHTML += question.answerOne;
+        gameArea.innerHTML += question.answerTwo;
+        gameArea.innerHTML += question.answerThree;
 
         // Click on the diffrent alternative buttons
         document.getElementById('1978').addEventListener('click', function() {
-            gameArea.innerHTML += '<h3> Fel! Rätt svar var 1980';
-            gameArea.innerHTML += '<button type="button" id="moveOn" class="btn btn-default">Nästa fråga</button>';
+            gameArea.innerHTML += question.wrong;
+            gameArea.innerHTML += question.buttonNext;
             document.getElementById('moveOn').addEventListener('click', function() {
             secondRound();
             });
@@ -160,8 +193,8 @@ window.Test = (function() {
             }, false);        
 
         document.getElementById('1979').addEventListener('click', function() { 
-            gameArea.innerHTML += '<h3> Fel! Rätt svar var 1980';
-            gameArea.innerHTML += '<button type="button" id="moveOn" class="btn btn-default">Nästa fråga</button>';
+            gameArea.innerHTML += question.wrong;
+            gameArea.innerHTML += question.buttonNext;
             document.getElementById('moveOn').addEventListener('click', function() {
             secondRound();
             });
@@ -172,8 +205,8 @@ window.Test = (function() {
             score += 3;
             preventManipulation = true;
             console.log('poäng: ' + score);
-            gameArea.innerHTML += '<h3> Rätt!';
-            gameArea.innerHTML += '<button type="button" id="moveOn" class="btn btn-default">Nästa fråga</button>';
+            gameArea.innerHTML += question.correct;
+            gameArea.innerHTML += question.buttonNext;
             document.getElementById('moveOn').addEventListener('click', function() {
             secondRound();
             });
@@ -188,20 +221,34 @@ window.Test = (function() {
         // set reset variable
         resetWhere = 4;
 
+        // Set question object
+        var question = {
+            theRond: '<h1>Andra ronden</h1>',
+            header: '<h2>FizzBuzz test</h2>',
+            theQuestion: '<p>Vad kommer härnäst i sekvensen?</p>',
+            theFizzBuzz: '<p>2, Fizz, 4, Buzz, Fizz, 7, 8, Fizz, ?</p>',
+            answerOne: '<button type="button" id="fizz" class="btn btn-default">Fizz</button>',
+            answerTwo: '<button type="button" id="buzz"class="btn btn-default">Buzz</button>',
+            answerThree: '<button type="button" id="fizzbuzz" class="btn btn-default">Fizz Buzz</button>',
+            buttonNext: '<button type="button" id="moveOn" class="btn btn-default">Nästa fråga</button>',
+            correct: '<h3>Korrekt!</h3>',
+            wrong: '<h3>Fel! Rätt svar är: Buzz</h3>'
+        };
+
         var gameArea = document.getElementById('gameArea');
-        gameArea.innerHTML = '<h1>Andra ronden</h1>';
-        gameArea.innerHTML += '<h2>FizzBuzz spel!</h2>';
-        gameArea.innerHTML += '<p>Vad kommer härnäst i sekvensen?</p>';
-        gameArea.innerHTML += '<p>2, Fizz, 4, Buzz, Fizz, 7, 8, Fizz, ?</p>';
-        gameArea.innerHTML += '<button type="button" id="fizz" class="btn btn-default">Fizz</button>';
-        gameArea.innerHTML += '<button type="button" id="buzz"class="btn btn-default">Buzz</button>';
-        gameArea.innerHTML += '<button type="button" id="fizzbuzz" class="btn btn-default">Fizz Buzz</button>';
+        gameArea.innerHTML = question.theRond;
+        gameArea.innerHTML += question.header;
+        gameArea.innerHTML += question.theQuestion;
+        gameArea.innerHTML += question.theFizzBuzz;
+        gameArea.innerHTML += question.answerOne;
+        gameArea.innerHTML += question.answerTwo;
+        gameArea.innerHTML += question.answerThree;
 
         // Click on the diffrent alternative buttons
         document.getElementById('fizz').addEventListener('click', function() {
             console.log('poäng: ' + score);
-            gameArea.innerHTML += '<h3> Fel! Rätt svar var Buzz';
-            gameArea.innerHTML += '<button type="button" id="moveOn" class="btn btn-default">Nästa fråga</button>';
+            gameArea.innerHTML += question.wrong;
+            gameArea.innerHTML += question.buttonNext;
             
             document.getElementById('moveOn').addEventListener('click', function() {
                 aboutThirdRound();
@@ -214,8 +261,8 @@ window.Test = (function() {
             score += 3;
             preventManipulation = true;
             console.log('poäng: ' + score);
-            gameArea.innerHTML += '<h3> Rätt!';
-            gameArea.innerHTML += '<button type="button" id="moveOn" class="btn btn-default">Nästa fråga</button>';
+            gameArea.innerHTML += question.correct;
+            gameArea.innerHTML += question.buttonNext;
             
             document.getElementById('moveOn').addEventListener('click', function() {
                 aboutThirdRound();
@@ -224,8 +271,8 @@ window.Test = (function() {
 
         document.getElementById('fizzbuzz').addEventListener('click', function() { 
             console.log('poäng: ' + score);
-            gameArea.innerHTML += '<h3> Fel! Rätt svar var Buzz';
-            gameArea.innerHTML += '<button type="button" id="moveOn" class="btn btn-default">Nästa fråga</button>';
+            gameArea.innerHTML += question.wrong;
+            gameArea.innerHTML += question.buttonNext;
             
             document.getElementById('moveOn').addEventListener('click', function() {
                 aboutThirdRound();
@@ -241,14 +288,23 @@ window.Test = (function() {
 
         console.log('info om tredje ronden.');
         console.log('poäng: ' + score);
+
+        // set info object
+        var info = {
+            h1: '<h1>Rond 3</h1>',
+            h2: '<h2>Testa din visuella förmåga och läsförståelse</h2>',
+            paragraphPart1: '<p>Detta test går ut på att du under tidspress ska klicka på de objekt du ser i nummerordning enligt en lista</p>',
+            paragraphPart2: '<p>Klicka på objekten i rätt nummerordning så snabbt du kan..</p>',
+            buttonNext: '<button type="button" id="moveOn" class="btn btn-default">Starta</button>'
+        };
         
         // display the info text 
         var gameArea = document.getElementById('gameArea');
-        gameArea.innerHTML = '<h1>Rond 3</h1>';
-        gameArea.innerHTML += '<h2>Testa din visuella förmåga och läsförståelse</h2>';
-        gameArea.innerHTML += '<p>Detta test går ut på att du under tidspress ska klicka på de objekt du ser i nummerordning enligt en lista</p>';
-        gameArea.innerHTML += '<p>Klicka på objekten i rätt nummerordning så snabbt du kan..</p>';
-        gameArea.innerHTML += '<button type="button" id="moveOn" class="btn btn-default">Starta</button>';
+        gameArea.innerHTML = info.h1;
+        gameArea.innerHTML += info.h2;
+        gameArea.innerHTML += info.paragraphPart1;
+        gameArea.innerHTML += info.paragraphPart2;
+        gameArea.innerHTML += info.buttonNext;
 
         // clickable button to take you to the actual round
         document.getElementById("moveOn").addEventListener("click", thirdRound);
@@ -263,14 +319,32 @@ window.Test = (function() {
         // Reset variable 
         resetWhere = 5;
 
+        // Set shape object
+        var shape = {
+            header: '<h1 class="center">Rond 3</h1>',
+            list: '<div class="left"><ul class="list-group"><li class="list-group-item">1. Den röda cirkeln</li><li class="list-group-item">2. Den gula rektangeln</li><li class="list-group-item">3. Den gröna kvadraten</li><li class="list-group-item">4. Den gula cirkeln</li><li class="list-group-item">5. Den gröna triangeln</li><li class="list-group-item">6. Den röda kvadraten</li><li class="list-group-item">7. Den blå cirkeln</li><li class="list-group-item">8. Den gula triangeln.</li><li class="list-group-item">9. Den blå rektangeln</li><li class="list-group-item">10. Den blå triangeln</li></ul></div>',
+            divRightStart: '<div class="right">',
+            divRightStop: '</div>',
+            rektangelBlue: '<div id="9" class="rektangel blue"></div>',
+            circleYellow: '<div id="4" class="cirkel yellow"></div>',
+            circleRed: '<div id="1" class="cirkel red"></div>',
+            kvadratGreen: '<div id="3" class="kvadrat green"></div>',
+            kvadratRed: '<div id="6" class="kvadrat red"></div>',
+            rektangelYellow: '<div id="2" class="rektangel yellow"></div>',
+            triangelGreen: '<div id="5" class="triangel-green"></div>',
+            triangelBlue: '<div id="10" class="triangel-blue"></div>',
+            circleBlue: '<div id="7" class="cirkel blue"></div>',
+            triangelYellow: '<div id="8" class="triangel-yellow"></div>'
+        };
+
         // Timer
-        timer = window.setTimeout(function(){ tenSeconds(); }, 10000);
+        // timer = window.setTimeout(function(){ tenSeconds(); }, 10000);
 
         var gameArea = document.getElementById('gameArea');
-        gameArea.innerHTML = '<h1 class="center">Rond 3</h1>';
-        gameArea.innerHTML += '<div class="left"><ul class="list-group"><li class="list-group-item">1. Den röda cirkeln</li><li class="list-group-item">2. Den gula rektangeln</li><li class="list-group-item">3. Den gröna kvadraten</li><li class="list-group-item">4. Den gula cirkeln</li><li class="list-group-item">5. Den gröna triangeln</li><li class="list-group-item">6. Den röda kvadraten</li><li class="list-group-item">7. Den blå cirkeln</li><li class="list-group-item">8. Den gula triangeln.</li><li class="list-group-item">9. Den blå rektangeln</li><li class="list-group-item">10. Den blå triangeln</li></ul></div>';
-        gameArea.innerHTML += '<div class="right"><div id="9" class="rektangel blue"></div><div id="4"class="cirkel yellow"></div><div id="1" class="cirkel red"></div><div id="3" class="kvadrat green"></div><div id="6" class="kvadrat red"></div></div>';
-        gameArea.innerHTML += '<div class="right"><div id="2" class="rektangel yellow"></div><div id="5" class="triangel-green"></div><div id="10" class="triangel-blue"></div><div id="7" class="cirkel blue"></div><div id="8" class="triangel-yellow"></div></div>';
+        gameArea.innerHTML = shape.header;
+        gameArea.innerHTML += shape.list;
+        gameArea.innerHTML +=  shape.divRightStart + shape.circleYellow + shape.rektangelBlue + shape.circleRed + shape.kvadratGreen + shape.kvadratRed +  shape.divRightStop ;
+        gameArea.innerHTML += shape.divRightStart + shape.rektangelYellow + shape.triangelGreen + shape.triangelBlue + shape.circleBlue + shape.triangelYellow + shape.divRightStop;
 
 
         // Click the objects in sequence
