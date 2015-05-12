@@ -58,7 +58,7 @@ window.Test = (function() {
             answerTwo:'<button type="button" id="2002"class="btn btn-default">2002</button>',
             answerThree:'<button type="button" id="2003" class="btn btn-default">2003</button>',
             correct: '<h3>Korrekt!</h3>',
-            wrong: '<h3>Fel! Rätt svar är: 2001</h3>'
+            wrong: '<h3>Fel! Rätt svar är: 2001</h3>',
           
         };
 
@@ -94,7 +94,10 @@ window.Test = (function() {
             console.log('poäng: ' + score);
             gameArea.innerHTML += question.wrong;
             gameArea.innerHTML += button.next;
-            document.getElementById('2002').className = 'btn btn-danger';
+            document.getElementById('2001').className = button.inactive;
+            document.getElementById('2002').className = button.wrong;
+            document.getElementById('2003').className = button.inactive;
+            
             document.getElementById('moveOn').addEventListener('click', function() {
             firstRound2();
             });
@@ -104,6 +107,10 @@ window.Test = (function() {
             console.log('poäng: ' + score);
             gameArea.innerHTML += question.wrong;
             gameArea.innerHTML += button.next;
+            document.getElementById('2001').className = button.inactive;
+            document.getElementById('2002').className = button.inactive;
+            document.getElementById('2003').className = button.wrong;
+            
             document.getElementById('2003').className = 'btn btn-danger';
             document.getElementById('moveOn').addEventListener('click', function() {
             firstRound2();
