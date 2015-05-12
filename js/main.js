@@ -32,7 +32,7 @@ window.Test = (function() {
         inactive: 'btn btn-default disabled',
         next: '<button type="button" id="moveOn" class="btn btn-default">Nästa fråga</button>',
 
-    }
+    };
 
 
 
@@ -270,15 +270,15 @@ window.Test = (function() {
             var fizzBuzz="", devideThree, devideFive, number;
             for (number=1;number<=9;number++)
             {
-                devideThree = number%3 ==0;
-                devideFive = number%5 ==0;
+                devideThree = number%3 ===0;
+                devideFive = number%5 ===0;
                 if(devideThree)
                 {
-                    fizzBuzz += "fizz, "
+                    fizzBuzz += "fizz, ";
                 }
                 if (devideFive)
                 {
-                    fizzBuzz += "buzz, "
+                    fizzBuzz += "buzz, ";
                 }
                 if (!(devideThree||devideFive))
                 {
@@ -359,9 +359,6 @@ window.Test = (function() {
     // function for info about the third round
     function aboutThirdRound() {
 
-
-
-
         console.log('info om tredje ronden.');
         console.log('poäng: ' + score);
 
@@ -414,7 +411,7 @@ window.Test = (function() {
         };
 
         // Timer
-        // timer = window.setTimeout(function(){ tenSeconds(); }, 10000);
+        timer = window.setTimeout(function(){ tenSeconds(); }, 10000);
 
         var gameArea = document.getElementById('gameArea');
         gameArea.innerHTML = shape.header;
