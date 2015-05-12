@@ -25,6 +25,15 @@ window.Test = (function() {
     // prevent manipulation from reset
     var preventManipulation = false;
 
+    // Object for button classes to be re-used
+    var button = {
+        correct: 'btn btn-success',
+        wrong: 'btn btn-danger',
+        inactive: 'btn btn-default disabled',
+        next: '<button type="button" id="moveOn" class="btn btn-default">Nästa fråga</button>',
+
+    }
+
 
 
 
@@ -48,9 +57,9 @@ window.Test = (function() {
             answerOne:'<button type="button" id="2001" class="btn btn-default">2001</button>',
             answerTwo:'<button type="button" id="2002"class="btn btn-default">2002</button>',
             answerThree:'<button type="button" id="2003" class="btn btn-default">2003</button>',
-            buttonNext: '<button type="button" id="moveOn" class="btn btn-default">Nästa fråga</button>',
             correct: '<h3>Korrekt!</h3>',
             wrong: '<h3>Fel! Rätt svar är: 2001</h3>'
+          
         };
 
         score = 0;
@@ -69,8 +78,12 @@ window.Test = (function() {
             score += 3;
             preventManipulation = true;
             console.log("poäng: " + score);
+            document.getElementById('2001').className = button.correct;
+            document.getElementById('2002').className = button.inactive;
+            document.getElementById('2003').className = button.inactive;
+
             gameArea.innerHTML += question.correct;
-            gameArea.innerHTML += question.buttonNext;
+            gameArea.innerHTML += button.next;
             document.getElementById('moveOn').addEventListener('click', function() {
             firstRound2();
             });
@@ -80,7 +93,8 @@ window.Test = (function() {
         document.getElementById('2002').addEventListener('click', function() { 
             console.log('poäng: ' + score);
             gameArea.innerHTML += question.wrong;
-            gameArea.innerHTML += question.buttonNext;
+            gameArea.innerHTML += button.next;
+            document.getElementById('2002').className = 'btn btn-danger';
             document.getElementById('moveOn').addEventListener('click', function() {
             firstRound2();
             });
@@ -89,7 +103,8 @@ window.Test = (function() {
         document.getElementById('2003').addEventListener('click', function() { 
             console.log('poäng: ' + score);
             gameArea.innerHTML += question.wrong;
-            gameArea.innerHTML += question.buttonNext;
+            gameArea.innerHTML += button.next;
+            document.getElementById('2003').className = 'btn btn-danger';
             document.getElementById('moveOn').addEventListener('click', function() {
             firstRound2();
             });
@@ -112,7 +127,7 @@ window.Test = (function() {
             answerOne: '<button type="button" id="1959" class="btn btn-default">1959</button>',
             answerTwo: '<button type="button" id="1958"class="btn btn-default">1958</button>',
             answerThree: '<button type="button" id="1955" class="btn btn-default">1955</button>',
-            buttonNext: '<button type="button" id="moveOn" class="btn btn-default">Nästa fråga</button>',
+            next: '<button type="button" id="moveOn" class="btn btn-default">Nästa fråga</button>',
             correct: '<h3>Korrekt!</h3>',
             wrong: '<h3>Fel! Rätt svar är: 1958</h3>'
         };        
@@ -128,7 +143,10 @@ window.Test = (function() {
         // Click on the diffrent alternative buttons
         document.getElementById('1959').addEventListener('click', function() {
             gameArea.innerHTML += question.wrong;
-            gameArea.innerHTML += question.buttonNext;
+            gameArea.innerHTML += button.next;
+            document.getElementById('1959').className = button.wrong;
+            document.getElementById('1958').className = button.inactive;
+            document.getElementById('1955').className = button.inactive;
             document.getElementById('moveOn').addEventListener('click', function() {
             firstRound3();
             });
@@ -141,7 +159,11 @@ window.Test = (function() {
             preventManipulation = true;
             console.log('poäng: ' + score);
             gameArea.innerHTML += question.correct;
-            gameArea.innerHTML += question.buttonNext;
+            gameArea.innerHTML += button.next;
+            document.getElementById('1959').className = button.inactive;
+            document.getElementById('1958').className = button.correct;
+            document.getElementById('1955').className = button.inactive;
+
             document.getElementById('moveOn').addEventListener('click', function() {
             firstRound3();
             });
@@ -149,7 +171,11 @@ window.Test = (function() {
 
         document.getElementById('1955').addEventListener('click', function() { 
             gameArea.innerHTML += question.wrong;
-            gameArea.innerHTML += question.buttonNext;
+            gameArea.innerHTML += button.next;
+            document.getElementById('1959').className = button.inactive;
+            document.getElementById('1958').className = button.inactive;
+            document.getElementById('1955').className = button.wrong;
+
             document.getElementById('moveOn').addEventListener('click', function() {
             firstRound3();
             });
@@ -170,7 +196,7 @@ window.Test = (function() {
             answerOne: '<button type="button" id="1978" class="btn btn-default">1978</button>',
             answerTwo: '<button type="button" id="1979"class="btn btn-default">1979</button>',
             answerThree: '<button type="button" id="1980" class="btn btn-default">1980</button>',
-            buttonNext: '<button type="button" id="moveOn" class="btn btn-default">Nästa fråga</button>',
+            next: '<button type="button" id="moveOn" class="btn btn-default">Nästa fråga</button>',
             correct: '<h3>Korrekt!</h3>',
             wrong: '<h3>Fel! Rätt svar är: 1980</h3>'
         };
@@ -187,7 +213,11 @@ window.Test = (function() {
         // Click on the diffrent alternative buttons
         document.getElementById('1978').addEventListener('click', function() {
             gameArea.innerHTML += question.wrong;
-            gameArea.innerHTML += question.buttonNext;
+            gameArea.innerHTML += button.next;
+            document.getElementById('1978').className = button.wrong;
+            document.getElementById('1979').className = button.inactive;
+            document.getElementById('1980').className = button.inactive;
+
             document.getElementById('moveOn').addEventListener('click', function() {
             secondRound();
             });
@@ -196,7 +226,10 @@ window.Test = (function() {
 
         document.getElementById('1979').addEventListener('click', function() { 
             gameArea.innerHTML += question.wrong;
-            gameArea.innerHTML += question.buttonNext;
+            gameArea.innerHTML += button.next;
+            document.getElementById('1978').className = button.inactive;
+            document.getElementById('1979').className = button.wrong;
+            document.getElementById('1980').className = button.inactive;
             document.getElementById('moveOn').addEventListener('click', function() {
             secondRound();
             });
@@ -208,7 +241,10 @@ window.Test = (function() {
             preventManipulation = true;
             console.log('poäng: ' + score);
             gameArea.innerHTML += question.correct;
-            gameArea.innerHTML += question.buttonNext;
+            gameArea.innerHTML += button.next;
+            document.getElementById('1978').className = button.inactive;
+            document.getElementById('1979').className = button.inactive;
+            document.getElementById('1980').className = button.correct;
             document.getElementById('moveOn').addEventListener('click', function() {
             secondRound();
             });
@@ -254,7 +290,7 @@ window.Test = (function() {
             answerOne: '<button type="button" id="fizz" class="btn btn-default">Fizz</button>',
             answerTwo: '<button type="button" id="buzz"class="btn btn-default">Buzz</button>',
             answerThree: '<button type="button" id="fizzbuzz" class="btn btn-default">Fizz Buzz</button>',
-            buttonNext: '<button type="button" id="moveOn" class="btn btn-default">Nästa fråga</button>',
+            next: '<button type="button" id="moveOn" class="btn btn-default">Nästa fråga</button>',
             correct: '<h3>Korrekt!</h3>',
             wrong: '<h3>Fel! Rätt svar är: Buzz</h3>'
         };
@@ -272,7 +308,10 @@ window.Test = (function() {
         document.getElementById('fizz').addEventListener('click', function() {
             console.log('poäng: ' + score);
             gameArea.innerHTML += question.wrong;
-            gameArea.innerHTML += question.buttonNext;
+            gameArea.innerHTML += button.next;
+            document.getElementById('fizz').className = button.wrong;
+            document.getElementById('buzz').className = button.inactive;
+            document.getElementById('fizzbuzz').className = button.inactive;
             
             document.getElementById('moveOn').addEventListener('click', function() {
                 aboutThirdRound();
@@ -286,7 +325,10 @@ window.Test = (function() {
             preventManipulation = true;
             console.log('poäng: ' + score);
             gameArea.innerHTML += question.correct;
-            gameArea.innerHTML += question.buttonNext;
+            gameArea.innerHTML += button.next;
+            document.getElementById('fizz').className = button.inactive;
+            document.getElementById('buzz').className = button.correct;
+            document.getElementById('fizzbuzz').className = button.inactive;
             
             document.getElementById('moveOn').addEventListener('click', function() {
                 aboutThirdRound();
@@ -296,7 +338,10 @@ window.Test = (function() {
         document.getElementById('fizzbuzz').addEventListener('click', function() { 
             console.log('poäng: ' + score);
             gameArea.innerHTML += question.wrong;
-            gameArea.innerHTML += question.buttonNext;
+            gameArea.innerHTML += button.next;
+            document.getElementById('fizz').className = button.inactive;
+            document.getElementById('buzz').className = button.inactive;
+            document.getElementById('fizzbuzz').className = button.wrong;
             
             document.getElementById('moveOn').addEventListener('click', function() {
                 aboutThirdRound();
@@ -319,7 +364,7 @@ window.Test = (function() {
             h2: '<h2>Testa din visuella förmåga och läsförståelse</h2>',
             paragraphPart1: '<p>Detta test går ut på att du under tidspress ska klicka på de objekt du ser i nummerordning enligt en lista</p>',
             paragraphPart2: '<p>Klicka på objekten i rätt nummerordning så snabbt du kan..</p>',
-            buttonNext: '<button type="button" id="moveOn" class="btn btn-default">Starta</button>'
+            next: '<button type="button" id="moveOn" class="btn btn-default">Starta</button>'
         };
         
         // display the info text 
@@ -328,7 +373,7 @@ window.Test = (function() {
         gameArea.innerHTML += info.h2;
         gameArea.innerHTML += info.paragraphPart1;
         gameArea.innerHTML += info.paragraphPart2;
-        gameArea.innerHTML += info.buttonNext;
+        gameArea.innerHTML += info.next;
 
         // clickable button to take you to the actual round
         document.getElementById("moveOn").addEventListener("click", thirdRound);
