@@ -22,9 +22,11 @@ window.Test = (function() {
     // Set timer variable
     var timer;
 
-
     // prevent manipulation from reset
     var preventManipulation = false;
+
+
+
 
 
     // click the button to start the test
@@ -221,12 +223,34 @@ window.Test = (function() {
         // set reset variable
         resetWhere = 4;
 
+        // FizzBuzz generator
+            var fizzBuzz="", devideThree, devideFive, number;
+            for (number=1;number<=9;number++)
+            {
+                devideThree = number%3 ==0;
+                devideFive = number%5 ==0;
+                if(devideThree)
+                {
+                    fizzBuzz += "fizz, "
+                }
+                if (devideFive)
+                {
+                    fizzBuzz += "buzz, "
+                }
+                if (!(devideThree||devideFive))
+                {
+                    fizzBuzz += number + ', ';
+                }
+                
+            }
+            console.log(fizzBuzz);
+
         // Set question object
         var question = {
             theRond: '<h1>Andra ronden</h1>',
             header: '<h2>FizzBuzz test</h2>',
             theQuestion: '<p>Vad kommer härnäst i sekvensen?</p>',
-            theFizzBuzz: '<p>2, Fizz, 4, Buzz, Fizz, 7, 8, Fizz, ?</p>',
+            theFizzBuzz: '<p>' + fizzBuzz + '???</p>',
             answerOne: '<button type="button" id="fizz" class="btn btn-default">Fizz</button>',
             answerTwo: '<button type="button" id="buzz"class="btn btn-default">Buzz</button>',
             answerThree: '<button type="button" id="fizzbuzz" class="btn btn-default">Fizz Buzz</button>',
