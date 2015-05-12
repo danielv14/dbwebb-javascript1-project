@@ -25,18 +25,23 @@ window.Test = (function() {
     // prevent manipulation from reset
     var preventManipulation = false;
 
-    // Object for button classes to be re-used
+    // Object for button classes  to be re-used
     var button = {
         correct: 'btn btn-success',
         wrong: 'btn btn-danger',
         inactive: 'btn btn-default disabled',
-        next: '<button type="button" id="moveOn" class="btn btn-default">Nästa fråga</button>',
+        next: '<button type="button" id="moveOn" class="btn btn-default">Nästa fråga</button>'
+     };
 
-    };
-
-
-
-
+    // Object for progress bars
+    var progress = {
+        progress: '<div id="progressbar"><div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">0%</div></div></div>',
+        progress2: '<div id="progressbar"><div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 10%;">10%</div></div></div>',
+        progress3: '<div id="progressbar"><div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%;">20%</div></div></div>',
+        progress4: '<div id="progressbar"><div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%;">30%</div></div></div>',
+        progress5: '<div id="progressbar"><div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">60%</div></div></div>',
+        progress6: '<div id="progressbar"><div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">100%</div></div></div>',
+    }
 
     // click the button to start the test
     document.getElementById("startGame").addEventListener("click", firstRound1);
@@ -59,14 +64,15 @@ window.Test = (function() {
             answerThree:'<button type="button" id="2003" class="btn btn-default">2003</button>',
             correct: '<h3>Korrekt!</h3>',
             wrong: '<h3>Fel! Rätt svar är: 2001</h3>',
-          
+            progress: '<div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 10%;">10%</div></div>'          
         };
 
         score = 0;
 
         console.log('First round');
         console.log('poäng: ' + score);
-        gameArea.innerHTML = question.theRond;
+        gameArea.innerHTML = progress.progress;
+        gameArea.innerHTML += question.theRond;
         gameArea.innerHTML += question.theQuestion;
         gameArea.innerHTML += question.answerOne;
         gameArea.innerHTML += question.answerTwo;
@@ -81,7 +87,7 @@ window.Test = (function() {
             document.getElementById('2001').className = button.correct;
             document.getElementById('2002').className = button.inactive;
             document.getElementById('2003').className = button.inactive;
-
+            document.getElementById('progressbar').innerHTML = question.progress;
             gameArea.innerHTML += question.correct;
             gameArea.innerHTML += button.next;
             document.getElementById('moveOn').addEventListener('click', function() {
@@ -94,6 +100,7 @@ window.Test = (function() {
             console.log('poäng: ' + score);
             gameArea.innerHTML += question.wrong;
             gameArea.innerHTML += button.next;
+            document.getElementById('progressbar').innerHTML = question.progress;
             document.getElementById('2001').className = button.inactive;
             document.getElementById('2002').className = button.wrong;
             document.getElementById('2003').className = button.inactive;
@@ -107,6 +114,7 @@ window.Test = (function() {
             console.log('poäng: ' + score);
             gameArea.innerHTML += question.wrong;
             gameArea.innerHTML += button.next;
+            document.getElementById('progressbar').innerHTML = question.progress;
             document.getElementById('2001').className = button.inactive;
             document.getElementById('2002').className = button.inactive;
             document.getElementById('2003').className = button.wrong;
@@ -134,14 +142,15 @@ window.Test = (function() {
             answerOne: '<button type="button" id="1959" class="btn btn-default">1959</button>',
             answerTwo: '<button type="button" id="1958"class="btn btn-default">1958</button>',
             answerThree: '<button type="button" id="1955" class="btn btn-default">1955</button>',
-            next: '<button type="button" id="moveOn" class="btn btn-default">Nästa fråga</button>',
             correct: '<h3>Korrekt!</h3>',
-            wrong: '<h3>Fel! Rätt svar är: 1958</h3>'
+            wrong: '<h3>Fel! Rätt svar är: 1958</h3>',
+            progress: '<div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 20%;">20%</div></div>'          
         };        
         // display the question and the alternative answers
         console.log('första ronden. Fråga två');
         var gameArea = document.getElementById("gameArea");
-        gameArea.innerHTML = question.theRond;
+        gameArea.innerHTML = progress.progress2;
+        gameArea.innerHTML += question.theRond;
         gameArea.innerHTML += question.theQuestion;
         gameArea.innerHTML += question.answerOne;
         gameArea.innerHTML += question.answerTwo;
@@ -151,6 +160,7 @@ window.Test = (function() {
         document.getElementById('1959').addEventListener('click', function() {
             gameArea.innerHTML += question.wrong;
             gameArea.innerHTML += button.next;
+            document.getElementById('progressbar').innerHTML = question.progress;
             document.getElementById('1959').className = button.wrong;
             document.getElementById('1958').className = button.inactive;
             document.getElementById('1955').className = button.inactive;
@@ -167,6 +177,7 @@ window.Test = (function() {
             console.log('poäng: ' + score);
             gameArea.innerHTML += question.correct;
             gameArea.innerHTML += button.next;
+            document.getElementById('progressbar').innerHTML = question.progress;
             document.getElementById('1959').className = button.inactive;
             document.getElementById('1958').className = button.correct;
             document.getElementById('1955').className = button.inactive;
@@ -182,7 +193,7 @@ window.Test = (function() {
             document.getElementById('1959').className = button.inactive;
             document.getElementById('1958').className = button.inactive;
             document.getElementById('1955').className = button.wrong;
-
+            document.getElementById('progressbar').innerHTML = question.progress;
             document.getElementById('moveOn').addEventListener('click', function() {
             firstRound3();
             });
@@ -203,15 +214,17 @@ window.Test = (function() {
             answerOne: '<button type="button" id="1978" class="btn btn-default">1978</button>',
             answerTwo: '<button type="button" id="1979"class="btn btn-default">1979</button>',
             answerThree: '<button type="button" id="1980" class="btn btn-default">1980</button>',
-            next: '<button type="button" id="moveOn" class="btn btn-default">Nästa fråga</button>',
             correct: '<h3>Korrekt!</h3>',
-            wrong: '<h3>Fel! Rätt svar är: 1980</h3>'
+            wrong: '<h3>Fel! Rätt svar är: 1980</h3>',
+            progress: '<div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 30%;">30%</div></div>'          
+
         };
         
         // display the question and the alternative answers
         console.log('första ronden. Fråga tre');
         var gameArea = document.getElementById("gameArea");
-        gameArea.innerHTML = question.theRond;
+        gameArea.innerHTML = progress.progress3;
+        gameArea.innerHTML += question.theRond;
         gameArea.innerHTML += question.theQuestion;
         gameArea.innerHTML += question.answerOne;
         gameArea.innerHTML += question.answerTwo;
@@ -221,6 +234,7 @@ window.Test = (function() {
         document.getElementById('1978').addEventListener('click', function() {
             gameArea.innerHTML += question.wrong;
             gameArea.innerHTML += button.next;
+            document.getElementById('progressbar').innerHTML = question.progress;
             document.getElementById('1978').className = button.wrong;
             document.getElementById('1979').className = button.inactive;
             document.getElementById('1980').className = button.inactive;
@@ -234,6 +248,7 @@ window.Test = (function() {
         document.getElementById('1979').addEventListener('click', function() { 
             gameArea.innerHTML += question.wrong;
             gameArea.innerHTML += button.next;
+            document.getElementById('progressbar').innerHTML = question.progress;
             document.getElementById('1978').className = button.inactive;
             document.getElementById('1979').className = button.wrong;
             document.getElementById('1980').className = button.inactive;
@@ -249,6 +264,7 @@ window.Test = (function() {
             console.log('poäng: ' + score);
             gameArea.innerHTML += question.correct;
             gameArea.innerHTML += button.next;
+            document.getElementById('progressbar').innerHTML = question.progress;
             document.getElementById('1978').className = button.inactive;
             document.getElementById('1979').className = button.inactive;
             document.getElementById('1980').className = button.correct;
@@ -299,11 +315,14 @@ window.Test = (function() {
             answerThree: '<button type="button" id="fizzbuzz" class="btn btn-default">Fizz Buzz</button>',
             next: '<button type="button" id="moveOn" class="btn btn-default">Nästa fråga</button>',
             correct: '<h3>Korrekt!</h3>',
-            wrong: '<h3>Fel! Rätt svar är: Buzz</h3>'
+            wrong: '<h3>Fel! Rätt svar är: Buzz</h3>',
+            progress: '<div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 60%;">60%</div></div>'          
+
         };
 
         var gameArea = document.getElementById('gameArea');
-        gameArea.innerHTML = question.theRond;
+        gameArea.innerHTML = progress.progress4;
+        gameArea.innerHTML += question.theRond;
         gameArea.innerHTML += question.header;
         gameArea.innerHTML += question.theQuestion;
         gameArea.innerHTML += question.theFizzBuzz;
@@ -316,6 +335,7 @@ window.Test = (function() {
             console.log('poäng: ' + score);
             gameArea.innerHTML += question.wrong;
             gameArea.innerHTML += button.next;
+            document.getElementById('progressbar').innerHTML = question.progress;
             document.getElementById('fizz').className = button.wrong;
             document.getElementById('buzz').className = button.inactive;
             document.getElementById('fizzbuzz').className = button.inactive;
@@ -333,6 +353,7 @@ window.Test = (function() {
             console.log('poäng: ' + score);
             gameArea.innerHTML += question.correct;
             gameArea.innerHTML += button.next;
+            document.getElementById('progressbar').innerHTML = question.progress;
             document.getElementById('fizz').className = button.inactive;
             document.getElementById('buzz').className = button.correct;
             document.getElementById('fizzbuzz').className = button.inactive;
@@ -346,6 +367,7 @@ window.Test = (function() {
             console.log('poäng: ' + score);
             gameArea.innerHTML += question.wrong;
             gameArea.innerHTML += button.next;
+            document.getElementById('progressbar').innerHTML = question.progress;
             document.getElementById('fizz').className = button.inactive;
             document.getElementById('buzz').className = button.inactive;
             document.getElementById('fizzbuzz').className = button.wrong;
@@ -373,7 +395,8 @@ window.Test = (function() {
         
         // display the info text 
         var gameArea = document.getElementById('gameArea');
-        gameArea.innerHTML = info.h1;
+        gameArea.innerHTML = progress.progress5;
+        gameArea.innerHTML += info.h1;
         gameArea.innerHTML += info.h2;
         gameArea.innerHTML += info.paragraphPart1;
         gameArea.innerHTML += info.paragraphPart2;
@@ -554,17 +577,19 @@ window.Test = (function() {
         window.clearTimeout(timer);
 
         var gameArea = document.getElementById('gameArea');
+        gameArea.innerHTML = progress.progress6;
         if (internalScore === 10) {
-            gameArea.innerHTML = '<h1>Grattis! Du fick alla rätt!</h1>';
+            gameArea.innerHTML += '<h1>Grattis! Du fick alla rätt!</h1>';
         } else if (clickFail === true) {
-            gameArea.innerHTML = '<h1>Du klickade i fel ordning :(</h1>';
+            gameArea.innerHTML += '<h1>Du klickade i fel ordning...</h1>';
         } else {
-            gameArea.innerHTML = '<h1>Tiden har gått ut!</h1>';
+            gameArea.innerHTML += '<h1>Tiden har gått ut!</h1>';
         }
 
         gameArea.innerHTML += '<h2>Du fick ' + internalScore + ' av 10 rätt</h2>';
         gameArea.innerHTML += '<p>intelligenstestet är nu slut.</p>';
         gameArea.innerHTML += '<button type="button" id="moveOn" class="btn btn-default">Se resultat</button>';
+
 
         // Click button to see end-screen
         document.getElementById("moveOn").addEventListener("click", endScreen);
