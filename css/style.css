@@ -104,3 +104,11 @@ div.left {
 	border-bottom: 100px solid #FDFD96;
 }
 
+.progress {
+	margin-top: 10px;
+}
+
+.progress-wrapper {
+	width: 50%;
+}
+
