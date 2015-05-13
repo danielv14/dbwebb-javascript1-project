@@ -577,13 +577,13 @@ window.Test = (function() {
         window.clearTimeout(timer);
 
         var gameArea = document.getElementById('gameArea');
-        gameArea.innerHTML = progress.progress6;
+        // What to type out in the header
         if (internalScore === 10) {
-            gameArea.innerHTML += '<h1>Grattis! Du fick alla rätt!</h1>';
+            gameArea.innerHTML = '<h1>Grattis! Du fick alla rätt!</h1>';
         } else if (clickFail === true) {
-            gameArea.innerHTML += '<h1>Du klickade i fel ordning...</h1>';
+            gameArea.innerHTML = '<h1>Du klickade i fel ordning...</h1>';
         } else {
-            gameArea.innerHTML += '<h1>Tiden har gått ut!</h1>';
+            gameArea.innerHTML = '<h1>Tiden har gått ut!</h1>';
         }
 
         gameArea.innerHTML += '<h2>Du fick ' + internalScore + ' av 10 rätt</h2>';
