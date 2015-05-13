@@ -41,7 +41,7 @@ window.Test = (function() {
         progress4: '<div id="progressbar"><div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%;">30%</div></div></div>',
         progress5: '<div id="progressbar"><div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">60%</div></div></div>',
         progress6: '<div id="progressbar"><div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">100%</div></div></div>',
-    }
+    };
 
     // click the button to start the test
     document.getElementById("startGame").addEventListener("click", firstRound1);
