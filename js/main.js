@@ -615,6 +615,9 @@ window.Test = (function() {
     function endScreen() {
         // set variable for final score
         var finalScore = score + internalScore;
+
+        // change reset variable to prevent reset. game is done...
+        resetWhere = 6;
         console.log('spelet är slut');
         var gameArea = document.getElementById('gameArea');
         gameArea.innerHTML = '<h1>Resultat</h1>';
@@ -705,6 +708,7 @@ window.Test = (function() {
             // Default
             else {
                 console.log('nothing to reset now');
+                alert('No active test in action. Nothing to reset.');
             }
         }
     };
