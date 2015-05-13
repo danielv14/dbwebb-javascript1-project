@@ -436,11 +436,27 @@ window.Test = (function() {
         // Timer
         timer = window.setTimeout(function(){ tenSeconds(); }, 10000);
 
+        // Create arrays to randomize
+        var shapeArrayOne = [shape.circleYellow, shape.rektangelBlue, shape.circleRed, shape.kvadratGreen, shape.kvadratRed];
+        var shapeArrayTwo = [shape.rektangelYellow, shape.triangelGreen, shape.triangelBlue, shape.circleBlue, shape.triangelYellow];
+        // Shuffle the arrays with the helper function
+        shuffle(shapeArrayOne);
+        shuffle(shapeArrayTwo);
+
+        // Convert to strings and remove ,
+        var shapeStringOne = shapeArrayOne.toString();
+        var shapeStringTwo = shapeArrayTwo.toString();
+        shapeStringOne = shapeStringOne.replace( /,/g, "" );
+        shapeStringTwo = shapeStringTwo.replace( /,/g, "" );
+
+
+
+
         var gameArea = document.getElementById('gameArea');
         gameArea.innerHTML = shape.header;
         gameArea.innerHTML += shape.list;
-        gameArea.innerHTML +=  shape.divRightStart + shape.circleYellow + shape.rektangelBlue + shape.circleRed + shape.kvadratGreen + shape.kvadratRed +  shape.divRightStop ;
-        gameArea.innerHTML += shape.divRightStart + shape.rektangelYellow + shape.triangelGreen + shape.triangelBlue + shape.circleBlue + shape.triangelYellow + shape.divRightStop;
+        gameArea.innerHTML +=  shape.divRightStart + shapeStringOne +  shape.divRightStop ;
+        gameArea.innerHTML += shape.divRightStart + shapeStringTwo + shape.divRightStop;
 
 
         // Click the objects in sequence
@@ -611,6 +627,26 @@ window.Test = (function() {
             window.location.reload();
         });
 
+    }
+
+    // Function to help get randomized array
+    function shuffle(array) {
+      var currentIndex = array.length, temporaryValue, randomIndex ;
+
+      // While there remain elements to shuffle...
+      while (0 !== currentIndex) {
+
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+
+        // And swap it with the current element.
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+      }
+
+      return array;
     }
 
 
