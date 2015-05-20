@@ -116,3 +116,9 @@ div.left {
 	width: 50%;
 }
 
+
+/*Overwrite bootstrap
+*/
+.btn {
+	margin-left: 5px;
+}
