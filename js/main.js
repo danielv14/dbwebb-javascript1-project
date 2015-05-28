@@ -13,19 +13,19 @@ window.Test = (function() {
     // Set variable for sequence for the third test
     var clickSequence = 0;
     
-    // set error variable for the third test to generat fail text
+    // set error variable for the third test to generate fail text
     var clickFail = false;
 
     // Set variable telling what to reset
     var resetWhere = 0;
 
-    // Set timer variable
+    // Create variable for timer
     var timer;
 
     // prevent manipulation from reset
     var preventManipulation = false;
 
-    // Object for button classes  to be re-used
+    // Object for button classes to be re-used
     var button = {
         correct: 'btn btn-success',
         wrong: 'btn btn-danger',
@@ -46,7 +46,10 @@ window.Test = (function() {
     // click the button to start the test
     document.getElementById("startGame").addEventListener("click", firstRound1);
 
-    // function to start the game
+    /**
+    * First round - Question one
+    *
+    */
     function firstRound1() {
        
         // Display the question and the available answers
@@ -71,6 +74,8 @@ window.Test = (function() {
 
         console.log('First round');
         console.log('poäng: ' + score);
+
+        // Add html content from objects
         gameArea.innerHTML = progress.progress;
         gameArea.innerHTML += question.theRond;
         gameArea.innerHTML += question.theQuestion;
@@ -127,7 +132,10 @@ window.Test = (function() {
 
         
     }
-    // function for first round question 2
+     /**
+    * First round - Question two
+    *
+    */
     function firstRound2() {
         console.log('poäng: ' + score);
         
@@ -200,7 +208,10 @@ window.Test = (function() {
             }, false);
     } 
 
-    // function for first round question three
+    /**
+    * First round - Question three (final question of this round)
+    *
+    */
     function firstRound3() {
 
         
@@ -273,9 +284,13 @@ window.Test = (function() {
             });
             }, false);
     }
-    // Function for the second part of the test
+
+    /**
+    * Second round. FizzBuzz test
+    *
+    */
     function secondRound() {
-        // Display the question and the alternatives
+        // console log the score and what the active round is
         console.log('second round');
         console.log('poäng: ' + score);
 
@@ -319,8 +334,9 @@ window.Test = (function() {
             progress: '<div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 60%;">60%</div></div>'          
 
         };
-
+        // Target the gameArea
         var gameArea = document.getElementById('gameArea');
+        // Add html content from objects
         gameArea.innerHTML = progress.progress4;
         gameArea.innerHTML += question.theRond;
         gameArea.innerHTML += question.header;
@@ -378,10 +394,13 @@ window.Test = (function() {
             }, false);
     }
 
-    // function for info about the third round
+    /**
+    * About the third round
+    *
+    */
     function aboutThirdRound() {
-
-        console.log('info om tredje ronden.');
+        // Console log score and the active round
+        console.log('about third round.');
         console.log('poäng: ' + score);
 
         // set info object
@@ -393,8 +412,9 @@ window.Test = (function() {
             next: '<button type="button" id="moveOn" class="btn btn-default">Starta</button>'
         };
         
-        // display the info text 
+        // target the gameArea
         var gameArea = document.getElementById('gameArea');
+        // Add html content from objects
         gameArea.innerHTML = progress.progress5;
         gameArea.innerHTML += info.h1;
         gameArea.innerHTML += info.h2;
@@ -403,11 +423,15 @@ window.Test = (function() {
         gameArea.innerHTML += info.next;
 
         // clickable button to take you to the actual round
-        document.getElementById("moveOn").addEventListener("click", thirdRound);
+        document.getElementById("moveOn").addEventListener("click", thirdRound(10000)); // set timer to 10 seconds
 
     }
-    // Function for the third round of the test
-    function thirdRound() {
+
+    /**
+    * Third round - Click shapes in order on time
+    * @param {integer} playTimer - how long will the test last for.
+    */
+    function thirdRound(playTimer) {
  
         console.log('tredje ronden');
         console.log('poäng: ' + score);
@@ -434,7 +458,7 @@ window.Test = (function() {
         };
 
         // Timer
-        timer = window.setTimeout(function(){ tenSeconds(); }, 10000);
+        timer = window.setTimeout(function(){ tenSeconds(); }, playTimer);
 
         // Create arrays to randomize
         var shapeArrayOne = [shape.circleYellow, shape.rektangelBlue, shape.circleRed, shape.kvadratGreen, shape.kvadratRed];
@@ -449,10 +473,10 @@ window.Test = (function() {
         shapeStringOne = shapeStringOne.replace( /,/g, "" );
         shapeStringTwo = shapeStringTwo.replace( /,/g, "" );
 
-
-
-
+        // Target the gameArea
         var gameArea = document.getElementById('gameArea');
+
+        // add html content from shape object
         gameArea.innerHTML = shape.header;
         gameArea.innerHTML += shape.list;
         gameArea.innerHTML +=  shape.divRightStart + shapeStringOne +  shape.divRightStop ;
@@ -586,13 +610,18 @@ window.Test = (function() {
 
     }
 
-    // Function for when ten seconds have passed or you finished test 3 or if you misclicked in test 3
+    /**
+    * After ten seconds have past / the player failed test 3 / the player completed test 3
+    *
+    */
     function tenSeconds() {
 
         // Cancel the timer
         window.clearTimeout(timer);
 
+        // Target the gameArea
         var gameArea = document.getElementById('gameArea');
+
         // What to type out in the header
         if (internalScore === 10) {
             gameArea.innerHTML = '<h1>Grattis! Du fick alla rätt!</h1>';
@@ -601,7 +630,7 @@ window.Test = (function() {
         } else {
             gameArea.innerHTML = '<h1>Tiden har gått ut!</h1>';
         }
-
+        // Add html to the gameArea
         gameArea.innerHTML += '<h2>Du fick ' + internalScore + ' av 10 rätt</h2>';
         gameArea.innerHTML += '<p>intelligenstestet är nu slut.</p>';
         gameArea.innerHTML += '<button type="button" id="moveOn" class="btn btn-default">Se resultat</button>';
@@ -611,7 +640,10 @@ window.Test = (function() {
         document.getElementById("moveOn").addEventListener("click", endScreen);
     }
 
-    // Function for the "end screen".
+    /**
+    * Represent "game over" screen where the player can see their score and choose to play again 
+    *
+    */
     function endScreen() {
         // set variable for final score
         var finalScore = score + internalScore;
@@ -632,7 +664,10 @@ window.Test = (function() {
 
     }
 
-    // Function to help get randomized array
+    /**
+    * helper funtion to shuffle arrays
+    * @param [array] array - the array to shuffle
+    */
     function shuffle(array) {
       var currentIndex = array.length, temporaryValue, randomIndex ;
 
@@ -655,7 +690,7 @@ window.Test = (function() {
 
     var test = {
 
-    // Reset possibilities depending on where you are in the test. Type "Test.reset()" in consol to reset the active test.
+    // Reset possibilities depending on where you are in the test. Type "Test.reset()" in console to reset the active test.
     'reset': function() {
             // Test 1 part 2
             if (resetWhere === 1) {
